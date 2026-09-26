@@ -295,12 +295,19 @@ window.addEventListener("DOMContentLoaded", () => {
 
 /*  AUTH GUARD  */
 
+console.log("profile.js loaded, waiting for auth state...");
+
 onAuthStateChanged(auth, (user) => {
 
+    console.log("onAuthStateChanged fired. user =", user);
+
     if (!user) {
+        console.log("No user detected — redirecting to index.html");
         window.location.href = "index.html";
         return;
     }
+
+    console.log("User is logged in:", user.email);
 
     currentUser = user;
     loadProfile(user);
