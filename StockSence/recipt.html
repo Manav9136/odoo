@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StockSense - Delivery</title>
+
+<link rel="stylesheet" href="css/recipt.css">
+<link rel="shortcut icon" href="icons/stocksense_icon.svg" type="image/x-icon">
+
+</head>
+
+<body>
+
+<!--  NAVIGATION  -->
+
+<div class="navbar">
+
+    <div class="logo">
+        StockSense
+    </div>
+
+    <a href="dashboard.html">
+        Dashboard
+    </a>
+
+    <a href="operations.html">
+        Operations
+    </a>
+
+    <a href="stock.html">
+        Stock
+    </a>
+
+    <a href="history.html">
+        Move History
+    </a>
+
+    <a href="setting.html">
+        Settings
+    </a>
+
+</div>
+
+
+<!--  MAIN  -->
+
+<div class="container">
+
+    <!-- HEADER -->
+
+    <div class="page-header">
+
+        <button
+            class="new-btn"
+            onclick="newDelivery()">
+
+            New
+
+        </button>
+
+        <div class="page-title">
+            Delivery
+        </div>
+
+    </div>
+
+
+    <!-- ACTION BAR -->
+
+    <div class="action-bar">
+
+        <div class="actions">
+
+            <button
+                class="action-btn"
+                onclick="validateDelivery()">
+
+                Validate
+
+            </button>
+
+            <button
+                class="action-btn"
+                onclick="printDelivery()">
+
+                Print
+
+            </button>
+
+            <button
+                class="action-btn"
+                onclick="cancelDelivery()">
+
+                Cancel
+
+            </button>
+
+        </div>
+
+
+        <!-- STATUS -->
+
+        <div class="status">
+
+            <button
+                class="active"
+                onclick="changeStatus(this)">
+
+                Draft
+
+            </button>
+
+            <button
+                onclick="changeStatus(this)">
+
+                Waiting
+
+            </button>
+
+            <button
+                onclick="changeStatus(this)">
+
+                Ready
+
+            </button>
+
+            <button
+                onclick="changeStatus(this)">
+
+                Done
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!--  DELIVERY INFORMATION  -->
+
+    <div class="delivery-info">
+
+        <div
+            class="reference"
+            id="reference">
+
+            WH/OUT/0001
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                Delivery Address
+            </label>
+
+            <input
+                id="deliveryAddress"
+                type="text"
+                placeholder="Enter delivery address"
+            >
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                Schedule Date
+            </label>
+
+            <input
+                id="scheduleDate"
+                type="date"
+            >
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                Responsible
+            </label>
+
+            <input
+                id="responsible"
+                type="text"
+                placeholder="Enter responsible person"
+            >
+
+        </div>
+
+
+        <div class="field">
+
+            <label>
+                Operation Type
+            </label>
+
+            <select id="operationType">
+
+                <option>
+                    Delivery
+                </option>
+
+                <option>
+                    Outgoing Shipment
+                </option>
+
+                <option>
+                    Customer Delivery
+                </option>
+
+                <option>
+                    Internal Delivery
+                </option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+
+    <!--  PRODUCTS  -->
+
+    <div>
+
+        <div class="products-title">
+            Products
+        </div>
+
+
+        <div class="product-header">
+
+            <div>
+                Product
+            </div>
+
+            <div>
+                Quantity
+            </div>
+
+            <div></div>
+
+        </div>
+
+
+        <div id="productList">
+
+            <!-- DEFAULT PRODUCT -->
+
+            <div class="product-row">
+
+                <select>
+
+                    <option>
+                        [DESK001] Desk
+                    </option>
+
+                    <option>
+                        [CHAIR001] Chair
+                    </option>
+
+                    <option>
+                        [TABLE001] Table
+                    </option>
+
+                    <option>
+                        [LAPTOP001] Laptop
+                    </option>
+
+                    <option>
+                        [MONITOR001] Monitor
+                    </option>
+
+                </select>
+
+
+                <input
+                    type="number"
+                    value="6"
+                    min="1"
+                >
+
+
+                <button
+                    class="remove-btn"
+                    onclick="removeProduct(this)">
+
+                    Remove
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="add-product">
+
+            <button onclick="openProductModal()">
+
+                + Add New Product
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!--  FOOTER  -->
+
+    <div class="footer-actions">
+
+        <button
+            class="back-btn"
+            onclick="goBack()">
+
+            Back
+
+        </button>
+
+
+        <button
+            class="save-btn"
+            onclick="saveDraft()">
+
+            Save Draft
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<div
+    class="modal"
+    id="productModal">
+
+    <div class="modal-box">
+
+        <h2>
+            Add Product
+        </h2>
+
+
+        <div class="modal-field">
+
+            <label>
+                Product
+            </label>
+
+            <select id="newProduct">
+
+                <option value="">
+                    Select Product
+                </option>
+
+                <option>
+                    [DESK001] Desk
+                </option>
+
+                <option>
+                    [CHAIR001] Chair
+                </option>
+
+                <option>
+                    [TABLE001] Table
+                </option>
+
+                <option>
+                    [LAPTOP001] Laptop
+                </option>
+
+                <option>
+                    [MONITOR001] Monitor
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="modal-field">
+
+            <label>
+                Quantity
+            </label>
+
+            <input
+                id="newQuantity"
+                type="number"
+                min="1"
+                value="1"
+            >
+
+        </div>
+
+
+        <div class="modal-buttons">
+
+            <button
+                class="cancel-modal"
+                onclick="closeProductModal()">
+
+                Cancel
+
+            </button>
+
+
+            <button
+                class="confirm-modal"
+                onclick="addProduct()">
+
+                Add Product
+
+            </button>
+
+        </div>  
+
+    </div>
+
+</div>
+
+<script src="js/recipt.js"></script>
+
+</body>
+</html>

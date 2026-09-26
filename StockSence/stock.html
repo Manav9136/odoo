@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>StockSense - Stock</title>
+
+<link rel="stylesheet" href="css/stock.css">
+<link rel="shortcut icon" href="icons/stocksense_icon.svg" type="image/x-icon">
+</head>
+
+
+<body>
+
+
+<div class="navbar">
+
+    <div class="logo">
+        StockSense
+    </div>
+
+
+    <a href="dashboard.html">
+        Dashboard
+    </a>
+
+
+    <a href="operations.html">
+        Operations
+    </a>
+
+
+    <a href="stock.html" class="active">
+        Stock
+    </a>
+
+
+    <a href="history.html">
+        Move History
+    </a>
+
+
+    <a href="setting.html">
+        Settings
+    </a>
+
+</div>
+
+
+<div class="container">
+
+
+    <div class="page-header">
+
+        <div class="page-title">
+            Stock
+        </div>
+
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search product..."
+                onkeyup="searchProducts()"
+            >
+
+            <span class="search-icon">
+                ⌕
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="table-wrapper">
+
+        <table class="stock-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Product
+                    </th>
+
+                    <th>
+                        Per Unit Cost
+                    </th>
+
+                    <th>
+                        On Hand
+                    </th>
+
+                    <th>
+                        Free to Use
+                    </th>
+
+                    <th>
+                        Action
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="stockTableBody">
+
+                <tr>
+
+                    <td class="product-name">
+                        Desk
+                    </td>
+
+                    <td class="cost">
+                        ₹3,000
+                    </td>
+
+                    <td class="stock-number">
+                        50
+                    </td>
+
+                    <td class="free-stock">
+                        45
+                    </td>
+
+                    <td>
+
+                        <button
+                            class="update-btn"
+                            onclick="openUpdateModal('Desk',50,45)">
+
+                            Update
+
+                        </button>
+
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td class="product-name">
+                        Table
+                    </td>
+
+                    <td class="cost">
+                        ₹3,000
+                    </td>
+
+                    <td class="stock-number">
+                        50
+                    </td>
+
+                    <td class="free-stock">
+                        50
+                    </td>
+
+                    <td>
+
+                        <button
+                            class="update-btn"
+                            onclick="openUpdateModal('Table',50,50)">
+
+                            Update
+
+                        </button>
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td class="product-name">
+                        Chair
+                    </td>
+
+                    <td class="cost">
+                        ₹1,500
+                    </td>
+
+                    <td class="stock-number">
+                        25
+                    </td>
+
+                    <td class="free-stock">
+                        20
+                    </td>
+
+                    <td>
+
+                        <button
+                            class="update-btn"
+                            onclick="openUpdateModal('Chair',25,20)">
+
+                            Update
+
+                        </button>
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td class="product-name">
+                        Laptop
+                    </td>
+
+                    <td class="cost">
+                        ₹55,000
+                    </td>
+
+                    <td class="stock-number">
+                        15
+                    </td>
+
+                    <td class="free-stock">
+                        12
+                    </td>
+
+                    <td>
+
+                        <button
+                            class="update-btn"
+                            onclick="openUpdateModal('Laptop',15,12)">
+
+                            Update
+
+                        </button>
+
+                    </td>
+
+                </tr>
+
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <div class="bottom-actions">
+
+        <div class="stock-info">
+
+            Showing current warehouse stock
+
+        </div>
+
+
+        <button
+            class="add-product-btn"
+            onclick="openAddProductModal()">
+
+            Add Product
+
+        </button>
+
+    </div>
+
+
+</div>
+
+
+<div
+    class="modal"
+    id="updateModal">
+
+
+    <div class="modal-box">
+
+
+        <div class="modal-title">
+            Update Stock
+        </div>
+
+
+        <div class="modal-field">
+
+            <label>
+                Product
+            </label>
+
+            <input
+                type="text"
+                id="updateProduct"
+                readonly
+            >
+
+        </div>
+
+
+        <div class="modal-field">
+
+            <label>
+                On Hand
+            </label>
+
+            <input
+                type="number"
+                id="updateOnHand"
+                min="0"
+            >
+
+        </div>
+
+
+        <div class="modal-field">
+
+            <label>
+                Free to Use
+            </label>
+
+            <input
+                type="number"
+                id="updateFree"
+                min="0"
+            >
+
+        </div>
+
+
+        <div class="modal-buttons">
+
+            <button
+                class="cancel-btn"
+                onclick="closeUpdateModal()">
+
+                Cancel
+
+            </button>
+
+
+            <button
+                class="confirm-btn"
+                onclick="updateStock()">
+
+                Update Stock
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div
+    class="modal"
+    id="addProductModal">
+
+
+    <div class="modal-box">
+
+
+        <div class="modal-title">
+            Add Product
+        </div>
+
+
+        <div class="modal-field">
+
+            <label>
+                Product Name
+            </label>
+
+            <input
+                type="text"
+                id="productName"
+                placeholder="Enter product name"
+            >
+
+        </div>
+
+
+        <div class="modal-field">
+
+            <label>
+                Per Unit Cost
+            </label>
+
+            <input
+                type="number"
+                id="productCost"
+                placeholder="Enter cost"
+                min="0"
+            >
+
+        </div>
+
+
+        <div class="modal-field">
+
+            <label>
+                Initial Stock
+            </label>
+
+            <input
+                type="number"
+                id="initialStock"
+                placeholder="Enter stock"
+                min="0"
+            >
+
+        </div>
+
+
+        <div class="modal-buttons">
+
+            <button
+                class="cancel-btn"
+                onclick="closeAddProductModal()">
+
+                Cancel
+
+            </button>
+
+
+            <button
+                class="confirm-btn"
+                onclick="addProduct()">
+
+                Add Product
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="js/stock.js"></script>
+
+</body>
+</html>

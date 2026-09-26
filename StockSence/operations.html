@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>StockSense | Operations</title>
+
+<link rel="stylesheet" href="css/operations.css">
+
+<link rel="shortcut icon" href="icons/stocksense_icon.svg" type="image/x-icon">
+
+</head>
+
+
+<body>
+
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar">
+
+    <div class="brand">
+
+        <div class="brand-box">
+            <img src="icons/stocksense_icon.svg" alt="">
+        </div>
+
+        <div class="brand-name">
+            StockSense
+        </div>
+
+    </div>
+
+
+    <div class="menu-label">
+        MAIN MENU
+    </div>
+
+
+    <div class="nav-item" onclick="goDashboard()">
+        <span>Dashboard</span>
+    </div>
+
+    <div class="nav-item active" onclick="goOperations()">
+        <span>Operations</span>
+    </div>
+
+    <div class="nav-item" onclick="goStock()">
+        <span>Stock</span>
+    </div>
+
+    <div class="nav-item" onclick="goHistory()">
+        <span>Move History</span>
+    </div>
+
+    <div class="nav-item" onclick="goSettings()">
+        <span>Settings</span>
+    </div>
+
+
+    <div class="menu-label">
+        ACCOUNT
+    </div>
+
+    <div class="nav-item" onclick="goProfile()">
+        <span>My Profile</span>
+    </div>
+
+    <div class="nav-item" onclick="logout()">
+        <span>Logout</span>
+    </div>
+
+</aside>
+
+
+
+<!-- MAIN -->
+
+<main class="main">
+
+
+<header class="header">
+
+    <h2>Operations</h2>
+
+    <div class="profile">
+        <span>Admin</span>
+        <div class="avatar">A</div>
+    </div>
+
+</header>
+
+
+
+<section class="content">
+
+
+<div class="page-top">
+
+    <div class="page-title">
+        Operations
+    </div>
+
+    <button class="new-button" onclick="openNewModal()">
+        + NEW
+    </button>
+
+</div>
+
+
+
+<!-- TABS -->
+
+<div class="tabs">
+
+    <button class="tab-btn active" data-type="receipt" onclick="switchTab('receipt', this)">
+        Receipts
+    </button>
+
+    <button class="tab-btn" data-type="delivery" onclick="switchTab('delivery', this)">
+        Delivery Orders
+    </button>
+
+    <button class="tab-btn" data-type="transfer" onclick="switchTab('transfer', this)">
+        Internal Transfers
+    </button>
+
+    <button class="tab-btn" data-type="adjustment" onclick="switchTab('adjustment', this)">
+        Stock Adjustments
+    </button>
+
+</div>
+
+
+
+<!-- FILTERS -->
+
+<div class="toolbar">
+
+    <input id="searchInput" class="search"
+           placeholder="Search by reference, partner or location..."
+           onkeyup="applyFilters()">
+
+    <div class="filter-group">
+
+        <select id="statusFilter" onchange="applyFilters()">
+            <option value="">All Status</option>
+            <option>Draft</option>
+            <option>Waiting</option>
+            <option>Ready</option>
+            <option>Done</option>
+            <option>Canceled</option>
+        </select>
+
+        <select id="warehouseFilter" onchange="applyFilters()">
+            <option value="">All Warehouses</option>
+            <option>WH/Stock1</option>
+            <option>WH/Stock2</option>
+        </select>
+
+    </div>
+
+</div>
+
+
+
+<!-- RECEIPTS TABLE -->
+
+<div class="table-box tab-panel" id="panel-receipt">
+
+<table>
+<thead>
+<tr>
+<th>REFERENCE</th>
+<th>SUPPLIER</th>
+<th>WAREHOUSE</th>
+<th>SCHEDULED DATE</th>
+<th>STATUS</th>
+</tr>
+</thead>
+
+<tbody id="tbody-receipt">
+
+<tr>
+<td class="reference">WH/IN/0001</td>
+<td>Azure Interior</td>
+<td>WH/Stock1</td>
+<td>26 Sep 2026</td>
+<td><span class="status status-done">Done</span></td>
+</tr>
+
+<tr>
+<td class="reference">WH/IN/0002</td>
+<td>Steel Traders Co.</td>
+<td>WH/Stock1</td>
+<td>27 Sep 2026</td>
+<td><span class="status status-waiting">Waiting</span></td>
+</tr>
+
+</tbody>
+</table>
+
+</div>
+
+
+
+<!-- DELIVERY TABLE -->
+
+<div class="table-box tab-panel" id="panel-delivery" style="display:none;">
+
+<table>
+<thead>
+<tr>
+<th>REFERENCE</th>
+<th>CUSTOMER</th>
+<th>WAREHOUSE</th>
+<th>SCHEDULED DATE</th>
+<th>STATUS</th>
+</tr>
+</thead>
+
+<tbody id="tbody-delivery">
+
+<tr>
+<td class="reference">WH/OUT/0001</td>
+<td>Azure Interior</td>
+<td>WH/Stock1</td>
+<td>26 Sep 2026</td>
+<td><span class="status status-ready">Ready</span></td>
+</tr>
+
+</tbody>
+</table>
+
+</div>
+
+
+
+<!-- INTERNAL TRANSFER TABLE -->
+
+<div class="table-box tab-panel" id="panel-transfer" style="display:none;">
+
+<table>
+<thead>
+<tr>
+<th>REFERENCE</th>
+<th>FROM</th>
+<th>TO</th>
+<th>CONTACT</th>
+<th>STATUS</th>
+</tr>
+</thead>
+
+<tbody id="tbody-transfer">
+
+<tr>
+<td class="reference">WH/INT/0001</td>
+<td>WH/Stock1</td>
+<td>Production Floor</td>
+<td>Warehouse Staff</td>
+<td><span class="status status-done">Done</span></td>
+</tr>
+
+</tbody>
+</table>
+
+</div>
+
+
+
+<!-- ADJUSTMENT TABLE -->
+
+<div class="table-box tab-panel" id="panel-adjustment" style="display:none;">
+
+<table>
+<thead>
+<tr>
+<th>REFERENCE</th>
+<th>PRODUCT</th>
+<th>LOCATION</th>
+<th>COUNTED QTY</th>
+<th>STATUS</th>
+</tr>
+</thead>
+
+<tbody id="tbody-adjustment">
+
+<tr>
+<td class="reference">WH/ADJ/0001</td>
+<td>Steel Rods</td>
+<td>WH/Stock1</td>
+<td>97</td>
+<td><span class="status status-done">Done</span></td>
+</tr>
+
+</tbody>
+</table>
+
+</div>
+
+
+</section>
+
+</main>
+
+
+
+<!-- NEW OPERATION MODAL -->
+
+<div id="opModal" class="modal">
+
+<div class="modal-box">
+
+    <h2 id="modalTitle">New Receipt</h2>
+
+
+    <div class="form-group">
+        <label>Reference</label>
+        <input id="opReference" readonly>
+    </div>
+
+
+    <!-- RECEIPT / DELIVERY fields -->
+    <div id="partnerField" class="form-group">
+        <label id="partnerLabel">Supplier</label>
+        <input id="opPartner" placeholder="Enter name">
+    </div>
+
+    <div id="warehouseField" class="form-group">
+        <label>Warehouse</label>
+        <select id="opWarehouse">
+            <option>WH/Stock1</option>
+            <option>WH/Stock2</option>
+        </select>
+    </div>
+
+    <div id="dateField" class="form-group">
+        <label>Scheduled Date</label>
+        <input type="date" id="opDate">
+    </div>
+
+
+    <!-- TRANSFER fields -->
+    <div id="transferFields" style="display:none;">
+
+        <div class="form-group">
+            <label>From Location</label>
+            <select id="opFrom">
+                <option>WH/Stock1</option>
+                <option>WH/Stock2</option>
+                <option>Production Floor</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>To Location</label>
+            <select id="opTo">
+                <option>Production Floor</option>
+                <option>WH/Stock1</option>
+                <option>WH/Stock2</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Contact</label>
+            <input id="opContact" placeholder="Enter contact / responsible">
+        </div>
+
+    </div>
+
+
+    <!-- ADJUSTMENT fields -->
+    <div id="adjustmentFields" style="display:none;">
+
+        <div class="form-group">
+            <label>Product</label>
+            <select id="opProduct">
+                <option>Steel Rods</option>
+                <option>Chairs</option>
+                <option>Wooden Panels</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Location</label>
+            <select id="opAdjLocation">
+                <option>WH/Stock1</option>
+                <option>WH/Stock2</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Counted Quantity</label>
+            <input type="number" id="opCountedQty" min="0" placeholder="Enter physical count">
+        </div>
+
+    </div>
+
+
+    <!-- PRODUCT LIST (Receipt / Delivery / Transfer) -->
+    <div id="productListField">
+
+        <label class="section-label">Products</label>
+
+        <div id="productList"></div>
+
+        <button type="button" class="add-product-btn" onclick="addProductRow()">
+            + Add Product
+        </button>
+
+    </div>
+
+
+    <div class="modal-buttons">
+        <button class="cancel" onclick="closeNewModal()">Cancel</button>
+        <button class="new-button" onclick="saveOperation()">Save</button>
+    </div>
+
+</div>
+
+</div>
+
+
+<script src="js/dashboard.js"></script>
+<script src="js/operations.js"></script>
+
+</body>
+
+</html>

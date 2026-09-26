@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StockSense - Move History</title>
+    <link rel="stylesheet" href="css/history.css">
+    <link rel="shortcut icon" href="icons/stocksense_icon.svg" type="image/x-icon">
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+
+    <div class="navbar">
+
+        <div class="logo">
+            StockSense
+        </div>
+
+        <a href="dashboard.html">
+            Dashboard
+        </a>
+
+        <a href="operations.html">
+            Operations
+        </a>
+
+        <a href="stock.html">
+            Stock
+        </a>
+
+        <a href="history.html" class="active">
+            Move History
+        </a>
+
+        <a href="setting.html">
+            Settings
+        </a>
+
+    </div>
+
+
+    <!-- MAIN -->
+
+    <div class="container">
+
+        <!-- HEADER -->
+
+        <div class="page-header">
+
+            <div class="left-header">
+
+                <button class="new-btn" onclick="newMove()">
+
+                    New
+
+                </button>
+
+                <div class="page-title">
+                    Move History
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- TOOLBAR -->
+
+        <div class="toolbar">
+
+            <div class="search-box">
+
+                <input type="text" id="searchInput" placeholder="Search by reference or contact..."
+                    onkeyup="searchMoves()">
+
+                <span class="search-icon">
+                    ⌕
+                </span>
+
+            </div>
+
+
+            <button class="view-btn active" onclick="listView(this)" title="List View">
+
+                List
+
+            </button>
+
+
+            <button class="view-btn" onclick="boardView(this)" title="Board View">
+
+                Board
+
+            </button>
+
+        </div>
+
+
+        <!-- TABLE -->
+
+        <div class="table-wrapper">
+
+            <table class="move-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Reference
+                        </th>
+
+                        <th>
+                            Date
+                        </th>
+
+                        <th>
+                            Contact
+                        </th>
+
+                        <th>
+                            From
+                        </th>
+
+                        <th>
+                            To
+                        </th>
+
+                        <th>
+                            Quantity
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="moveTable">
+
+                    <tr>
+
+                        <td class="reference" onclick="showMove('WH/IN/0001')">
+
+                            WH/IN/0001
+
+                        </td>
+
+                        <td>
+                            26/09/2026
+                        </td>
+
+                        <td>
+                            ABC Supplier
+                        </td>
+
+                        <td>
+                            Vendor
+                        </td>
+
+                        <td>
+                            WH/Stock1
+                        </td>
+
+                        <td>
+                            +50
+                        </td>
+
+                        <td class="status-ready">
+                            Ready
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td class="reference" onclick="showMove('WH/OUT/0001')">
+
+                            WH/OUT/0001
+
+                        </td>
+
+                        <td>
+                            26/09/2026
+                        </td>
+
+                        <td>
+                            Customer
+                        </td>
+
+                        <td>
+                            WH/Stock1
+                        </td>
+
+                        <td>
+                            Customer
+                        </td>
+
+                        <td>
+                            -10
+                        </td>
+
+                        <td class="status-ready">
+                            Ready
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td class="reference" onclick="showMove('WH/INT/0001')">
+
+                            WH/INT/0001
+
+                        </td>
+
+                        <td>
+                            25/09/2026
+                        </td>
+
+                        <td>
+                            Internal Transfer
+                        </td>
+
+                        <td>
+                            WH/Stock1
+                        </td>
+
+                        <td>
+                            WH/Stock2
+                        </td>
+
+                        <td>
+                            15
+                        </td>
+
+                        <td class="status-done">
+                            Done
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td class="reference" onclick="showMove('WH/IN/0002')">
+
+                            WH/IN/0002
+
+                        </td>
+
+                        <td>
+                            24/09/2026
+                        </td>
+
+                        <td>
+                            XYZ Vendor
+                        </td>
+
+                        <td>
+                            Vendor
+                        </td>
+
+                        <td>
+                            WH/Stock2
+                        </td>
+
+                        <td>
+                            +30
+                        </td>
+
+                        <td class="status-ready">
+                            Ready
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <!-- FOOTER -->
+
+        <div class="footer">
+
+            <div>
+                Showing movement history
+            </div>
+
+            <div>
+                Total Moves: <strong>4</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- NEW MOVE MODAL -->
+
+    <div class="modal" id="moveModal">
+
+        <div class="modal-box">
+
+            <div class="modal-title">
+                New Stock Move
+            </div>
+
+
+            <div class="modal-field">
+
+                <label>
+                    Contact
+                </label>
+
+                <input type="text" id="contact" placeholder="Enter contact">
+
+            </div>
+
+
+            <div class="modal-field">
+
+                <label>
+                    From
+                </label>
+
+                <select id="fromLocation">
+
+                    <option value="">
+                        Select source
+                    </option>
+
+                    <option>
+                        Vendor
+                    </option>
+
+                    <option>
+                        WH/Stock1
+                    </option>
+
+                    <option>
+                        WH/Stock2
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="modal-field">
+
+                <label>
+                    To
+                </label>
+
+                <select id="toLocation">
+
+                    <option value="">
+                        Select destination
+                    </option>
+
+                    <option>
+                        WH/Stock1
+                    </option>
+
+                    <option>
+                        WH/Stock2
+                    </option>
+
+                    <option>
+                        Customer
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="modal-field">
+
+                <label>
+                    Quantity
+                </label>
+
+                <input type="number" id="quantity" min="1" placeholder="Enter quantity">
+
+            </div>
+
+
+            <div class="modal-buttons">
+
+                <button class="cancel-btn" onclick="closeModal()">
+
+                    Cancel
+
+                </button>
+
+
+                <button class="save-btn" onclick="saveMove()">
+
+                    Save Move
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="js/history.js"></script>
+
+</body>
+
+</html>

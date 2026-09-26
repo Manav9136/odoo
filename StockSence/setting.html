@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>StockSense - Settings</title>
+
+</head>
+
+<link rel="stylesheet" href="css/setting.css">
+<link rel="shortcut icon" href="icons/stocksense_icon.svg" type="image/x-icon">
+
+<body>
+
+<!--  NAVIGATION  -->
+
+<div class="navbar">
+
+    <div class="logo">
+        StockSense
+    </div>
+
+    <a href="dashboard.html">
+        Dashboard
+    </a>
+
+    <a href="operations.html">
+        Operations
+    </a>
+
+    <a href="stock.html">
+        Stock
+    </a>
+
+    <a href="history.html">
+        Move History
+    </a>
+
+    <a href="setting.html" class="active">
+        Settings
+    </a>
+
+</div>
+
+
+<!--  MAIN  -->
+
+<div class="container">
+
+    <!-- HEADER -->
+
+    <div class="page-header">
+
+        <div class="page-title">
+            Settings
+        </div>
+
+    </div>
+
+
+    <!--  SETTINGS TABS  -->
+
+    <div class="settings-tabs">
+
+        <button
+            class="settings-tab active"
+            onclick="showSection('warehouse', this)">
+
+            Warehouse
+
+        </button>
+
+
+        <button
+            class="settings-tab"
+            onclick="showSection('location', this)">
+
+            Location
+
+        </button>
+
+    </div>
+
+
+    <!--  CONTENT  -->
+
+    <div class="settings-content">
+
+
+        
+
+        <div
+            class="settings-section active"
+            id="warehouse">
+
+
+            <div class="form-group">
+
+                <label>
+                    Name
+                </label>
+
+                <input
+                    type="text"
+                    id="warehouseName"
+                    placeholder="Enter warehouse name">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Short Code
+                </label>
+
+                <input
+                    type="text"
+                    id="shortCode"
+                    placeholder="Enter short code"
+                    maxlength="10">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Address
+                </label>
+
+                <textarea
+                    class="address-box"
+                    id="warehouseAddress"
+                    placeholder="Enter warehouse address"></textarea>
+
+            </div>
+
+
+            <div class="actions">
+
+                <button
+                    class="save-btn"
+                    onclick="saveWarehouse()">
+
+                    Save
+
+                </button>
+
+
+                <button
+                    class="cancel-btn"
+                    onclick="resetWarehouse()">
+
+                    Cancel
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="settings-section"
+            id="location">
+
+
+            <div class="location-note">
+
+                Add and manage the different warehouse
+                locations used for inventory operations.
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Name
+                </label>
+
+                <input
+                    type="text"
+                    id="locationName"
+                    placeholder="Enter location name">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Short Code
+                </label>
+
+                <input
+                    type="text"
+                    id="locationCode"
+                    placeholder="Enter short code"
+                    maxlength="10">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Warehouse
+                </label>
+
+                <select id="locationWarehouse">
+
+                    <option value="">
+                        Select Warehouse
+                    </option>
+
+                    <option value="Main Warehouse">
+                        Main Warehouse
+                    </option>
+
+                    <option value="Central Warehouse">
+                        Central Warehouse
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="actions">
+
+                <button
+                    class="save-btn"
+                    onclick="saveLocation()">
+
+                    Save
+
+                </button>
+
+
+                <button
+                    class="cancel-btn"
+                    onclick="resetLocation()">
+
+                    Cancel
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="js/setting.js"></script>
+
+
+</body>
+</html>
