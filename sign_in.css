@@ -1,0 +1,304 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: #f7f9fc;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 900px;
+    min-height: 560px;
+
+    background: white;
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,0.10);
+
+    display: flex;
+
+    overflow: hidden;
+}
+
+.left {
+    width: 45%;
+
+    background: #eaf4ff;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 40px;
+}
+
+
+.logo {
+    width: 90px;
+    height: 90px;
+
+    background: #2878f0;
+
+    border-radius: 22px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: white;
+
+    font-size: 38px;
+    font-weight: bold;
+
+    margin-bottom: 25px;
+}
+
+
+.left h1 {
+    color: #1d3557;
+
+    font-size: 32px;
+
+    margin-bottom: 12px;
+}
+
+
+.left p {
+    color: #65758b;
+
+    text-align: center;
+
+    line-height: 1.6;
+}
+
+.right {
+    width: 55%;
+
+    padding: 50px 60px;
+
+    overflow-y: auto;
+}
+
+
+.right h2 {
+    color: #1d3557;
+
+    font-size: 30px;
+
+    margin-bottom: 8px;
+}
+
+
+.subtitle {
+    color: #7b8794;
+
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+
+label {
+    display: block;
+
+    color: #34495e;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    margin-bottom: 8px;
+}
+
+
+input {
+    width: 100%;
+
+    height: 48px;
+
+    border: 1px solid #d5dce5;
+
+    border-radius: 10px;
+
+    padding: 0 15px;
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition: 0.3s;
+}
+
+
+input:focus {
+    border-color: #2878f0;
+
+    box-shadow:
+        0 0 0 3px rgba(40,120,240,0.10);
+}
+
+.password-row {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+
+.password-row label {
+    margin-bottom: 8px;
+}
+
+
+.forgot {
+    color: #2878f0;
+
+    font-size: 13px;
+
+    text-decoration: none;
+
+    cursor: pointer;
+}
+
+
+.forgot:hover {
+    text-decoration: underline;
+}
+
+.login-btn {
+    width: 100%;
+
+    height: 48px;
+
+    background: #2878f0;
+
+    border: none;
+
+    border-radius: 10px;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    margin-top: 10px;
+
+    transition: 0.3s;
+}
+
+
+.login-btn:hover {
+    background: #1768dd;
+}
+
+.signup-text {
+    text-align: center;
+
+    margin-top: 25px;
+
+    color: #687586;
+
+    font-size: 14px;
+}
+
+
+.signup-text a {
+    color: #2878f0;
+
+    font-weight: bold;
+
+    text-decoration: none;
+
+    cursor: pointer;
+}
+
+
+.back-login {
+    margin-top: 20px;
+
+    text-align: center;
+
+    color: #2878f0;
+
+    cursor: pointer;
+
+    font-size: 14px;
+}
+
+
+.back-login:hover {
+    text-decoration: underline;
+}
+
+.message {
+    margin-top: 15px;
+
+    text-align: center;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+#signupForm,
+#forgotForm {
+    display: none;
+}
+
+.otp-box {
+    text-align: center;
+
+    background: #f5f9ff;
+
+    border: 1px solid #dbe9ff;
+
+    border-radius: 12px;
+
+    padding: 15px;
+
+    margin-bottom: 20px;
+
+    color: #2878f0;
+
+    font-size: 14px;
+}
+
+@media(max-width: 750px) {
+
+    .container {
+        width: 92%;
+
+        min-height: auto;
+    }
+
+
+    .left {
+        display: none;
+    }
+
+
+    .right {
+        width: 100%;
+
+        padding: 40px 30px;
+    }
+
+}
