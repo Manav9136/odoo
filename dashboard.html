@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>StockSense | Dashboard</title>
+
+<link rel="stylesheet" href="css/dashboard.css">
+</head>
+
+
+<body>
+
+<aside class="sidebar">
+
+    <div class="brand">
+
+        <div class="brand-box">
+            S
+        </div>
+
+        <div class="brand-name">
+            StockSense
+        </div>
+
+    </div>
+
+
+    <div class="menu-label">
+        MAIN MENU
+    </div>
+
+
+    <div
+        class="nav-item active"
+        onclick="goDashboard()">
+
+        <div class="nav-line"></div>
+
+        <span>Dashboard</span>
+
+    </div>
+
+
+    <div
+        class="nav-item"
+        onclick="goOperations()">
+
+        <div class="nav-line"></div>
+
+        <span>Operations</span>
+
+    </div>
+
+
+    <div
+        class="nav-item"
+        onclick="goStock()">
+
+        <div class="nav-line"></div>
+
+        <span>Stock</span>
+
+    </div>
+
+
+    <div
+        class="nav-item"
+        onclick="goHistory()">
+
+        <div class="nav-line"></div>
+
+        <span>Move History</span>
+
+    </div>
+
+
+    <div
+        class="nav-item"
+        onclick="goSettings()">
+
+        <div class="nav-line"></div>
+
+        <span>Settings</span>
+
+    </div>
+
+
+    <div class="menu-label">
+        ACCOUNT
+    </div>
+
+
+    <div
+        class="nav-item"
+        onclick="goProfile()">
+
+        <div class="nav-line"></div>
+
+        <span>My Profile</span>
+
+    </div>
+
+
+    <div
+        class="nav-item"
+        onclick="logout()">
+
+        <div class="nav-line"></div>
+
+        <span>Logout</span>
+
+    </div>
+
+</aside>
+
+
+<main class="main">
+
+<header class="header">
+
+    <div class="header-title">
+        Dashboard
+    </div>
+
+
+    <div class="user-area">
+
+        <div class="user-info">
+
+            <div class="user-name">
+                Admin
+            </div>
+
+            <div class="user-role">
+                Inventory Manager
+            </div>
+
+        </div>
+
+
+        <div class="user-avatar">
+            A
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<section class="content">
+
+
+<div class="page-heading">
+
+    <h1>
+        Inventory Overview
+    </h1>
+
+    <p>
+        Monitor your current inventory and warehouse operations.
+    </p>
+
+</div>
+
+
+<div class="filters">
+
+    <button class="filter">
+        All Documents
+    </button>
+
+    <button class="filter">
+        All Status
+    </button>
+
+    <button class="filter">
+        All Warehouses
+    </button>
+
+    <button class="filter">
+        All Categories
+    </button>
+
+</div>
+
+<div class="kpi-grid">
+
+
+    <div class="kpi-card">
+
+        <div class="kpi-label">
+            TOTAL PRODUCTS IN STOCK
+        </div>
+
+        <div class="kpi-value">
+            1,250
+        </div>
+
+        <div class="kpi-sub">
+            Current available quantity
+        </div>
+
+    </div>
+
+
+    <div class="kpi-card">
+
+        <div class="kpi-label">
+            LOW / OUT OF STOCK
+        </div>
+
+        <div class="kpi-value">
+            18
+        </div>
+
+        <div class="kpi-sub">
+            Items requiring attention
+        </div>
+
+    </div>
+
+
+    <div class="kpi-card">
+
+        <div class="kpi-label">
+            PENDING RECEIPTS
+        </div>
+
+        <div class="kpi-value">
+            4
+        </div>
+
+        <div class="kpi-sub">
+            Incoming stock
+        </div>
+
+    </div>
+
+
+    <div class="kpi-card">
+
+        <div class="kpi-label">
+            PENDING DELIVERIES
+        </div>
+
+        <div class="kpi-value">
+            4
+        </div>
+
+        <div class="kpi-sub">
+            Outgoing stock
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="operation-grid">
+
+
+    <div class="operation-card">
+
+        <div class="operation-head">
+
+            <h3>
+                Receipt
+            </h3>
+
+            <button
+                class="view-button"
+                onclick="goReceipts()">
+
+                View Details
+
+            </button>
+
+        </div>
+
+
+        <div class="operation-number">
+            4
+        </div>
+
+        <div class="operation-description">
+            Incoming stock waiting to be received
+        </div>
+
+    </div>
+
+
+
+    <div class="operation-card">
+
+        <div class="operation-head">
+
+            <h3>
+                Delivery
+            </h3>
+
+            <button
+                class="view-button"
+                onclick="goDeliveries()">
+
+                View Details
+
+            </button>
+
+        </div>
+
+
+        <div class="operation-number">
+            4
+        </div>
+
+        <div class="operation-description">
+            Outgoing orders waiting for delivery
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="lower-grid">
+
+
+<div class="panel">
+
+    <div class="panel-header">
+
+        <h3>
+            Recent Stock Movements
+        </h3>
+
+        <button onclick="goHistory()">
+            View All
+        </button>
+
+    </div>
+
+
+    <div class="table-wrapper">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        PRODUCT
+                    </th>
+
+                    <th>
+                        TYPE
+                    </th>
+
+                    <th>
+                        QUANTITY
+                    </th>
+
+                    <th>
+                        STATUS
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+
+                <tr>
+
+                    <td>
+                        Steel Rods
+                    </td>
+
+                    <td>
+                        Receipt
+                    </td>
+
+                    <td>
+                        +50
+                    </td>
+
+                    <td>
+                        <span class="status done">
+                            Done
+                        </span>
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>
+                        Office Chairs
+                    </td>
+
+                    <td>
+                        Delivery
+                    </td>
+
+                    <td>
+                        -10
+                    </td>
+
+                    <td>
+                        <span class="status waiting">
+                            Waiting
+                        </span>
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>
+                        Steel Sheets
+                    </td>
+
+                    <td>
+                        Transfer
+                    </td>
+
+                    <td>
+                        25
+                    </td>
+
+                    <td>
+                        <span class="status done">
+                            Done
+                        </span>
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>
+                        Copper Wire
+                    </td>
+
+                    <td>
+                        Adjustment
+                    </td>
+
+                    <td>
+                        -3
+                    </td>
+
+                    <td>
+                        <span class="status low">
+                            Adjusted
+                        </span>
+                    </td>
+
+                </tr>
+
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+<div class="panel">
+
+    <div class="panel-header">
+
+        <h3>
+            Available Stock
+        </h3>
+
+        <button onclick="goStock()">
+            View All
+        </button>
+
+    </div>
+
+
+    <div class="stock-list">
+
+
+        <div class="stock-row">
+
+            <div>
+
+                <div class="product-name">
+                    Steel Rods
+                </div>
+
+                <div class="product-code">
+                    SKU-001
+                </div>
+
+            </div>
+
+            <div class="stock-quantity">
+                250
+            </div>
+
+        </div>
+
+
+        <div class="stock-row">
+
+            <div>
+
+                <div class="product-name">
+                    Office Chairs
+                </div>
+
+                <div class="product-code">
+                    SKU-002
+                </div>
+
+            </div>
+
+            <div class="stock-quantity">
+                120
+            </div>
+
+        </div>
+
+
+        <div class="stock-row">
+
+            <div>
+
+                <div class="product-name">
+                    Steel Sheets
+                </div>
+
+                <div class="product-code">
+                    SKU-003
+                </div>
+
+            </div>
+
+            <div class="stock-quantity">
+                85
+            </div>
+
+        </div>
+
+
+        <div class="stock-row">
+
+            <div>
+
+                <div class="product-name">
+                    Copper Wire
+                </div>
+
+                <div class="product-code">
+                    SKU-004
+                </div>
+
+            </div>
+
+            <div class="stock-quantity">
+                42
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+</main>
+
+
+
+<script src="js/dashboard.js"></script>
+</body>
+</html>
